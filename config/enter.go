@@ -20,7 +20,7 @@ type Map struct {
 }
 
 type MonitorEvent struct {
-	EventType types.EventType `yaml:"-"`
+	EventType types.EventType `yaml:"eventType"`
 	Enable    bool            `yaml:"enable"`
 	Quality   float64         `yaml:"quality"`
 	Time      string          `yaml:"time"`

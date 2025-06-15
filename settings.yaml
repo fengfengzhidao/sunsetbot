@@ -1,10 +1,12 @@
 monitor: # 监控配置
   city: 长沙 # 监控的城市
   evening: # 晚霞的监控配置，当前获取当天的晚霞
+    eventType: 0
     enable: true # 是否启用
     quality: 0.2 # 校验指标，满足指标就进行推送
     time: 0 46 13,16 * * * # 定时任务的时间配置
   morning: # 朝霞的监控配置，当天获取第二天的朝霞
+    eventType: 1
     enable: false
     quality: 0.7
     time: 0 0 19,20 * * *
