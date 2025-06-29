@@ -77,7 +77,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: docker-image
-          path: docker-build/${{ env.DOCKER_IMAGE_NAME }}_${{ github.ref_name }}.tar.gz
+          path: ${{ env.DOCKER_IMAGE_NAME }}_${{ github.ref_name }}.tar.gz
 
   release:
     needs: [build, docker]
