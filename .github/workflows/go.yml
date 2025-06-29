@@ -6,7 +6,7 @@ on:
       - "v*"  # 仅 v 开头的 tag 触发
 
 env:
-  DOCKER_IMAGE_NAME: myapp  # Docker镜像名称
+  DOCKER_IMAGE_NAME: sunsetbot  # Docker镜像名称
 
 jobs:
   build:
@@ -110,7 +110,7 @@ jobs:
             artifacts/main-linux-amd64
             artifacts/main-linux-arm64-arm64
             artifacts/main-windows-amd64.exe
-            artifacts/${{ env.DOCKER_IMAGE_NAME }}.tar.gz
+            artifacts/${{ env.DOCKER_IMAGE_NAME }}_${{ github.ref_name }}.tar.gz
           tag_name: ${{ github.ref_name }}
           generate_release_notes: true
         env:
