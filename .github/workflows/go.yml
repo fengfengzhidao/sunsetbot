@@ -72,13 +72,12 @@ jobs:
           docker build -t ${{ env.DOCKER_IMAGE_NAME }}:${{ github.ref_name }} .
           docker save ${{ env.DOCKER_IMAGE_NAME }}:${{ github.ref_name }} > ${{ env.DOCKER_IMAGE_NAME }}.tar
           gzip ${{ env.DOCKER_IMAGE_NAME }}.tar
-          echo "DOCKER_TAR=${{ env.DOCKER_IMAGE_NAME }}_${{ github.ref_name }}.tar.gz" >> $GITHUB_ENV
 
       - name: Upload Docker Image
         uses: actions/upload-artifact@v4
         with:
           name: docker-image
-          path: docker-build/${{ env.DOCKER_TAR }}
+          path: docker-build/${{ env.DOCKER_IMAGE_NAME }}_${{ github.ref_name }}.tar.gz
 
   release:
     needs: [build, docker]
@@ -96,7 +95,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: docker-image
-          path: artifacts
+          path: docker-build/${{ env.DOCKER_IMAGE_NAME }}_${{ github.ref_name }}.tar.gz
 
       - name: Verify Files
         run: ls -R artifacts
